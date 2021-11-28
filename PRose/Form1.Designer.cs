@@ -3,7 +3,7 @@
 	// Token: 0x02000076 RID: 118
 	public partial class Form1 : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060001A4 RID: 420 RVA: 0x00019878 File Offset: 0x00017A78
+		// Token: 0x060001A4 RID: 420 RVA: 0x00012440 File Offset: 0x00010640
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -17,7 +17,7 @@
 			while (this.components == null);
 		}
 
-		// Token: 0x060001A5 RID: 421 RVA: 0x00019908 File Offset: 0x00017B08
+		// Token: 0x060001A5 RID: 421 RVA: 0x0001247C File Offset: 0x0001067C
 		private void InitializeComponent()
 		{
 			this.siticoneLabel6.Font = new global::System.Drawing.Font("Corbel", 10f, global::System.Drawing.FontStyle.Bold);

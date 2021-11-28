@@ -28,7 +28,7 @@ public static class Context
 		}
 	}
 
-	// Token: 0x06000002 RID: 2 RVA: 0x000027BC File Offset: 0x000009BC
+	// Token: 0x06000002 RID: 2 RVA: 0x00002790 File Offset: 0x00000990
 	public static void SaveModule()
 	{
 		try
@@ -55,13 +55,13 @@ public static class Context
 				Context.module.NativeWrite(filename, nativeModuleWriterOptions);
 			}
 		}
-		catch (ModuleWriterException ex)
+		catch (ModuleWriterException)
 		{
 		}
 		Console.ReadLine();
 	}
 
-	// Token: 0x06000003 RID: 3 RVA: 0x000028F0 File Offset: 0x00000AF0
+	// Token: 0x06000003 RID: 3 RVA: 0x0000289C File Offset: 0x00000A9C
 	public static byte[] Compress(byte[] data)
 	{
 		MemoryStream memoryStream;
@@ -81,7 +81,7 @@ public static class Context
 		return memoryStream.ToArray();
 	}
 
-	// Token: 0x06000004 RID: 4 RVA: 0x00002998 File Offset: 0x00000B98
+	// Token: 0x06000004 RID: 4 RVA: 0x00002908 File Offset: 0x00000B08
 	public static void PackerPhase()
 	{
 		ModuleDefMD moduleDefMD;
@@ -115,7 +115,7 @@ public static class Context
 		moduleDefMD.Cor20HeaderFlags = Context.module.Cor20HeaderFlags;
 	}
 
-	// Token: 0x06000005 RID: 5 RVA: 0x00002D34 File Offset: 0x00000F34
+	// Token: 0x06000005 RID: 5 RVA: 0x00002B54 File Offset: 0x00000D54
 	public static byte[] GetCurrentModule(ModuleDefMD module)
 	{
 		MemoryStream memoryStream;
@@ -139,14 +139,13 @@ public static class Context
 		return array;
 	}
 
-	// Token: 0x06000006 RID: 6 RVA: 0x00002EF8 File Offset: 0x000010F8
+	// Token: 0x06000006 RID: 6 RVA: 0x00002C3C File Offset: 0x00000E3C
 	public static byte[] Encrypt(byte[] plain, byte[] Key)
 	{
-		int num;
-		num++;
+		int num = 1;
 		int num2 = 0;
 		int num3;
-		if (num3 >= Key.Length)
+		if (0 >= Key.Length)
 		{
 			num3++;
 			do
@@ -166,14 +165,14 @@ public static class Context
 		return plain;
 	}
 
-	// Token: 0x06000007 RID: 7 RVA: 0x000030C8 File Offset: 0x000012C8
+	// Token: 0x06000007 RID: 7 RVA: 0x00002D0C File Offset: 0x00000F0C
 	public static string RandomString(int length)
 	{
 		return new string((from s in Enumerable.Repeat<string>("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length)
 			select s[Context.random.Next(s.Length)]).ToArray<char>());
 	}
 
-	// Token: 0x06000008 RID: 8 RVA: 0x00003130 File Offset: 0x00001330
+	// Token: 0x06000008 RID: 8 RVA: 0x00002D58 File Offset: 0x00000F58
 	public static void Welcome()
 	{
 	}

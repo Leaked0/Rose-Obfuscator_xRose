@@ -20,7 +20,7 @@ namespace PRose.Properties
 		}
 
 		// Token: 0x17000019 RID: 25
-		// (get) Token: 0x060001AE RID: 430 RVA: 0x00029848 File Offset: 0x00027A48
+		// (get) Token: 0x060001AE RID: 430 RVA: 0x0001C51C File Offset: 0x0001A71C
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		internal static ResourceManager ResourceManager
 		{

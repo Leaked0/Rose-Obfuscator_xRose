@@ -3,10 +3,10 @@
 	// Token: 0x02000077 RID: 119
 	public partial class Form2 : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060001AA RID: 426 RVA: 0x00028210 File Offset: 0x00026410
+		// Token: 0x060001AA RID: 426 RVA: 0x0001B7B0 File Offset: 0x000199B0
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing)
+			if (!disposing)
 			{
 			}
 			do
@@ -17,7 +17,7 @@
 			this.components.Dispose();
 		}
 
-		// Token: 0x060001AB RID: 427 RVA: 0x000282A0 File Offset: 0x000264A0
+		// Token: 0x060001AB RID: 427 RVA: 0x0001B7EC File Offset: 0x000199EC
 		private void InitializeComponent()
 		{
 			this.siticoneLabel6.ForeColor = global::System.Drawing.Color.LightCoral;

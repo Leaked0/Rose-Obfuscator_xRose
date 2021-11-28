@@ -16,13 +16,13 @@ namespace PRose
 			this.InitializeComponent();
 		}
 
-		// Token: 0x060001A7 RID: 423 RVA: 0x0002815C File Offset: 0x0002635C
+		// Token: 0x060001A7 RID: 423 RVA: 0x0001B768 File Offset: 0x00019968
 		private void Form2_Load(object sender, EventArgs e)
 		{
 			base.Opacity = 0.9;
 		}
 
-		// Token: 0x060001A8 RID: 424 RVA: 0x000281A4 File Offset: 0x000263A4
+		// Token: 0x060001A8 RID: 424 RVA: 0x0001B788 File Offset: 0x00019988
 		private void obfuscate_Click(object sender, EventArgs e)
 		{
 			base.Hide();
@@ -31,7 +31,7 @@ namespace PRose
 			form = new Form1();
 		}
 
-		// Token: 0x060001A9 RID: 425 RVA: 0x00016D68 File Offset: 0x00014F68
+		// Token: 0x060001A9 RID: 425 RVA: 0x00010C70 File Offset: 0x0000EE70
 		private void siticoneButton1_Click(object sender, EventArgs e)
 		{
 			Environment.Exit(0);
