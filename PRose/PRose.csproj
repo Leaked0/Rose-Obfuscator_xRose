@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86623286-8283-45DD-BC55-6A522C2A6BFB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PRose</RootNamespace>
+    <AssemblyName>PRose</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>PRose.ico</ApplicationIcon>
+    <StartupObject>PRose.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dnlib">
+      <HintPath>..\..\dnlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Siticone.UI">
+      <HintPath>..\..\Siticone.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Rose\Helper\extension.cs" />
+    <Compile Include="Rose\Helper\InjectHelper.cs" />
+    <Compile Include="Rose\Protections\Abs.cs" />
+    <Compile Include="Rose\Protections\Add.cs" />
+    <Compile Include="Rose\Protections\AddJunk.cs" />
+    <Compile Include="Rose\Protections\AntiDe4dot.cs" />
+    <Compile Include="Rose\Protections\AntiDebug.cs" />
+    <Compile Include="Rose\Protections\AntiDebug2.cs" />
+    <Compile Include="Rose\Protections\AntiDebugSafe.cs" />
+    <Compile Include="Rose\Protections\AntiDump.cs" />
+    <Compile Include="Rose\Protections\AntiDump2.cs" />
+    <Compile Include="Rose\Protections\AntiDumpMethod1.cs" />
+    <Compile Include="Rose\Protections\AntiDumpMethod2.cs" />
+    <Compile Include="Rose\Protections\AntiDumpMethod3.cs" />
+    <Compile Include="Rose\Protections\AntiILDasm.cs" />
+    <Compile Include="Rose\Protections\AntiTamper.cs" />
+    <Compile Include="Rose\Protections\Arithmetic.cs" />
+    <Compile Include="Rose\Protections\ArithmeticEmulator.cs" />
+    <Compile Include="Rose\Protections\ArithmeticTypes.cs" />
+    <Compile Include="Rose\Protections\ArithmeticUtils.cs" />
+    <Compile Include="Rose\Protections\ArithmeticVT.cs" />
+    <Compile Include="Rose\Protections\Base64.cs" />
+    <Compile Include="Rose\Protections\Block.cs" />
+    <Compile Include="Rose\Protections\Blocks.cs" />
+    <Compile Include="Rose\Protections\Calli.cs" />
+    <Compile Include="Rose\Protections\Ceiling.cs" />
+    <Compile Include="Rose\Protections\ClassesRenaming.cs" />
+    <Compile Include="Rose\Protections\Context.cs" />
+    <Compile Include="Rose\Protections\ControlFlow.cs" />
+    <Compile Include="Rose\Protections\Cos.cs" />
+    <Compile Include="Rose\Protections\CryptoRandom.cs" />
+    <Compile Include="Rose\Protections\DebugChecker.cs" />
+    <Compile Include="Rose\Protections\DebugCheckerPacker.cs" />
+    <Compile Include="Rose\Protections\Decoder.cs" />
+    <Compile Include="Rose\Protections\DecryptionHelper.cs" />
+    <Compile Include="Rose\Protections\Div.cs" />
+    <Compile Include="Rose\Protections\Enc.cs" />
+    <Compile Include="Rose\Protections\EnumerableExtensions.cs" />
+    <Compile Include="Rose\Protections\EnumerableHelper.cs" />
+    <Compile Include="Rose\Protections\EofAntiTamper.cs" />
+    <Compile Include="Rose\Protections\EventDefAnalyzer.cs" />
+    <Compile Include="Rose\Protections\fakeobfuscator.cs" />
+    <Compile Include="Rose\Protections\FieldDefAnalyzer.cs" />
+    <Compile Include="Rose\Protections\FieldsRenaming.cs" />
+    <Compile Include="Rose\Protections\First.cs" />
+    <Compile Include="Rose\Protections\Floor.cs" />
+    <Compile Include="Rose\Protections\Generator.cs" />
+    <Compile Include="Rose\Protections\HeaderErase.cs" />
+    <Compile Include="Rose\Protections\HeaderErasePacker.cs" />
+    <Compile Include="Rose\Protections\hideMethods.cs" />
+    <Compile Include="Rose\Protections\Hidenamespaces.cs" />
+    <Compile Include="Rose\Protections\hideStrings.cs" />
+    <Compile Include="Rose\Protections\iAnalyze.cs" />
+    <Compile Include="Rose\Protections\ICrypto.cs" />
+    <Compile Include="Rose\Protections\iFunction.cs" />
+    <Compile Include="Rose\Protections\InvalidMDPhase.cs" />
+    <Compile Include="Rose\Protections\IRenaming.cs" />
+    <Compile Include="Rose\Protections\Log.cs" />
+    <Compile Include="Rose\Protections\Log10.cs" />
+    <Compile Include="Rose\Protections\MetaStrip.cs" />
+    <Compile Include="Rose\Protections\MethodDefAnalyzer.cs" />
+    <Compile Include="Rose\Protections\MethodsRenaming.cs" />
+    <Compile Include="Rose\Protections\Mul.cs" />
+    <Compile Include="Rose\Protections\Mutation.cs" />
+    <Compile Include="Rose\Protections\NamespacesRenaming.cs" />
+    <Compile Include="Rose\Protections\NewRenamerObfuscation.cs" />
+    <Compile Include="Rose\Protections\Packer2.cs" />
+    <Compile Include="Rose\Protections\PropertiesRenaming.cs" />
+    <Compile Include="Rose\Protections\proxy.cs" />
+    <Compile Include="Rose\Protections\ProxyInt.cs" />
+    <Compile Include="Rose\Protections\ProxyMeth.cs" />
+    <Compile Include="Rose\Protections\ProxyString.cs" />
+    <Compile Include="Rose\Protections\RandomOutlinedMethods.cs" />
+    <Compile Include="Rose\Protections\RenamerObfuscation.cs" />
+    <Compile Include="Rose\Protections\Round.cs" />
+    <Compile Include="Rose\Protections\RUtils.cs" />
+    <Compile Include="Rose\Protections\SecureRandoms.cs" />
+    <Compile Include="Rose\Protections\Sin.cs" />
+    <Compile Include="Rose\Protections\Sqrt.cs" />
+    <Compile Include="Rose\Protections\StackUnfConfusion.cs" />
+    <Compile Include="Rose\Protections\StringEncoder.cs" />
+    <Compile Include="Rose\Protections\Sub.cs" />
+    <Compile Include="Rose\Protections\Tan.cs" />
+    <Compile Include="Rose\Protections\Tanh.cs" />
+    <Compile Include="Rose\Protections\Token.cs" />
+    <Compile Include="Rose\Protections\Truncate.cs" />
+    <Compile Include="Rose\Protections\TypeDefAnalyzer.cs" />
+    <Compile Include="Rose\Protections\Value.cs" />
+    <Compile Include="Rose\Protections\Watermark.cs" />
+    <Compile Include="Rose\Protections\xCryptoRandom.cs" />
+    <Compile Include="Rose\Protections\xd.cs" />
+    <Compile Include="Rose\Protections\Xor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resources" />
+    <EmbeddedResource Include="Form2.resources" />
+    <EmbeddedResource Include="Properties\Resources.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
