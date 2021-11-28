@@ -17,7 +17,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x06000066 RID: 102 RVA: 0x00007EB8 File Offset: 0x000060B8
+		// Token: 0x06000066 RID: 102 RVA: 0x0000555C File Offset: 0x0000375C
 		public override ArithmeticVT Arithmetic(Instruction instruction, ModuleDef module)
 		{
 			return null;

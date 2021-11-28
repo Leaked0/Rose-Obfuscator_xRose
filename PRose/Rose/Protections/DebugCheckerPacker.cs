@@ -13,7 +13,7 @@ namespace Rose.Protections
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool IsDebuggerPresent();
 
-		// Token: 0x060000F7 RID: 247 RVA: 0x0000E40C File Offset: 0x0000C60C
+		// Token: 0x060000F7 RID: 247 RVA: 0x0000A004 File Offset: 0x00008204
 		public static void XERPO()
 		{
 			Stopwatch stopwatch;
@@ -29,11 +29,11 @@ namespace Rose.Protections
 					{
 						if (Debugger.IsAttached)
 						{
-							goto Block_3;
+							goto IL_3E;
 						}
 					}
 				}
-				Block_3:
+				IL_3E:
 				stopwatch = Stopwatch.StartNew();
 			}
 		}

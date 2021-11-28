@@ -17,7 +17,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x06000084 RID: 132 RVA: 0x000081F0 File Offset: 0x000063F0
+		// Token: 0x06000084 RID: 132 RVA: 0x000056A8 File Offset: 0x000038A8
 		public override ArithmeticVT Arithmetic(Instruction instruction, ModuleDef module)
 		{
 			Generator generator = new Generator();

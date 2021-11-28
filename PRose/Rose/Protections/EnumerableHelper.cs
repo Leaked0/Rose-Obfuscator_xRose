@@ -7,7 +7,7 @@ namespace Rose.Protections
 	// Token: 0x02000055 RID: 85
 	public static class EnumerableHelper
 	{
-		// Token: 0x06000111 RID: 273 RVA: 0x0000FF04 File Offset: 0x0000E104
+		// Token: 0x06000111 RID: 273 RVA: 0x0000B6E8 File Offset: 0x000098E8
 		public static TE Random<TE>(IEnumerable<TE> input)
 		{
 			TE[] array = input.ToArray<TE>();

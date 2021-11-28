@@ -10,7 +10,7 @@ namespace Rose.Protections
 	// Token: 0x02000013 RID: 19
 	public static class AntiDumpMethod3
 	{
-		// Token: 0x06000031 RID: 49 RVA: 0x000063F8 File Offset: 0x000045F8
+		// Token: 0x06000031 RID: 49 RVA: 0x000049A8 File Offset: 0x00002BA8
 		public static void InjectEraseMethod(ModuleDef module)
 		{
 			IEnumerable<IDnlibDef> source;
@@ -33,11 +33,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_11D;
 					}
 				}
 				module.GlobalType.Remove(methodDef);
-				Block_4:;
+				IL_11D:;
 			}
 			finally
 			{

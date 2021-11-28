@@ -20,13 +20,13 @@ namespace Rose.Protections
 			this.Operand = null;
 		}
 
-		// Token: 0x0600008F RID: 143 RVA: 0x00008394 File Offset: 0x00006594
+		// Token: 0x0600008F RID: 143 RVA: 0x000057B8 File Offset: 0x000039B8
 		public OpCode GetOpCode()
 		{
 			return this.opCode;
 		}
 
-		// Token: 0x06000090 RID: 144 RVA: 0x000083C4 File Offset: 0x000065C4
+		// Token: 0x06000090 RID: 144 RVA: 0x000057D0 File Offset: 0x000039D0
 		public object GetOperand()
 		{
 			return this.Operand;

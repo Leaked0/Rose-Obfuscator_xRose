@@ -9,7 +9,7 @@ namespace Rose.Protections
 	// Token: 0x0200005F RID: 95
 	public static class RUtils
 	{
-		// Token: 0x06000128 RID: 296 RVA: 0x000118E0 File Offset: 0x0000FAE0
+		// Token: 0x06000128 RID: 296 RVA: 0x0000CD74 File Offset: 0x0000AF74
 		public static string GenerateRandomString()
 		{
 			string input;
@@ -30,7 +30,7 @@ namespace Rose.Protections
 			return text;
 		}
 
-		// Token: 0x06000129 RID: 297 RVA: 0x00011A08 File Offset: 0x0000FC08
+		// Token: 0x06000129 RID: 297 RVA: 0x0000CE10 File Offset: 0x0000B010
 		private static string GenerateRandomString(int size)
 		{
 			string text;
@@ -44,7 +44,7 @@ namespace Rose.Protections
 			array2 = new byte[1];
 			rngcryptoServiceProvider = new RNGCryptoServiceProvider();
 			byte[] array3;
-			if (num >= array3.Length)
+			if (0 < array3.Length)
 			{
 			}
 			byte b = array3[num];
@@ -55,20 +55,19 @@ namespace Rose.Protections
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x0600012A RID: 298 RVA: 0x00011BC0 File Offset: 0x0000FDC0
+		// Token: 0x0600012A RID: 298 RVA: 0x0000CED8 File Offset: 0x0000B0D8
 		public static string GenerateRandomString2(int size)
 		{
 			RNGCryptoServiceProvider rngcryptoServiceProvider;
 			byte[] array;
 			rngcryptoServiceProvider.GetNonZeroBytes(array);
 			array = new byte[size];
-			int num;
-			num++;
+			int num = 1;
 			array = new byte[1];
 			rngcryptoServiceProvider = new RNGCryptoServiceProvider();
 			byte[] array2 = array;
 			StringBuilder stringBuilder = new StringBuilder(size);
-			if (num >= array2.Length)
+			if (1 >= array2.Length)
 			{
 				num = 0;
 				rngcryptoServiceProvider.GetNonZeroBytes(array);
@@ -81,34 +80,33 @@ namespace Rose.Protections
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x0600012B RID: 299 RVA: 0x00011D78 File Offset: 0x0000FF78
+		// Token: 0x0600012B RID: 299 RVA: 0x0000CF98 File Offset: 0x0000B198
 		public static string RandomNum(int length)
 		{
 			return new string((from s in Enumerable.Repeat<string>("0123456789", length)
 				select s[RUtils.random.Next(s.Length)]).ToArray<char>());
 		}
 
-		// Token: 0x0600012C RID: 300 RVA: 0x00011DE0 File Offset: 0x0000FFE0
+		// Token: 0x0600012C RID: 300 RVA: 0x0000CFE4 File Offset: 0x0000B1E4
 		public static string RandomSymbols(int length)
 		{
 			return new string((from s in Enumerable.Repeat<string>("ﭢٷٯړڔڕږﺈﺂﺁﺇﻌﻐۄۅۈﻲ۶ۋڙڟڑڋٱٺڿۓےﻬڈګڪﻬ", length)
 				select s[RUtils.random.Next(s.Length)]).ToArray<char>());
 		}
 
-		// Token: 0x0600012D RID: 301 RVA: 0x00011E48 File Offset: 0x00010048
+		// Token: 0x0600012D RID: 301 RVA: 0x0000D030 File Offset: 0x0000B230
 		public static string RandomChinese(int length)
 		{
 			return new string((from s in Enumerable.Repeat<string>("埃克斯大波留艾儿波留豆", length)
 				select s[RUtils.random.Next(s.Length)]).ToArray<char>());
 		}
 
-		// Token: 0x0600012E RID: 302 RVA: 0x00011EB0 File Offset: 0x000100B0
+		// Token: 0x0600012E RID: 302 RVA: 0x0000D07C File Offset: 0x0000B27C
 		private static string MD5Hash(string input)
 		{
-			int num;
-			num++;
+			int num = 1;
 			byte[] array;
-			if (num >= array.Length)
+			if (1 >= array.Length)
 			{
 				num = 0;
 			}
@@ -121,7 +119,7 @@ namespace Rose.Protections
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x0600012F RID: 303 RVA: 0x00011FC4 File Offset: 0x000101C4
+		// Token: 0x0600012F RID: 303 RVA: 0x0000D0F8 File Offset: 0x0000B2F8
 		private static char GetLetter()
 		{
 			Random random;
@@ -130,7 +128,7 @@ namespace Rose.Protections
 			return (char)(97 + num);
 		}
 
-		// Token: 0x06000130 RID: 304 RVA: 0x00012034 File Offset: 0x00010234
+		// Token: 0x06000130 RID: 304 RVA: 0x0000D130 File Offset: 0x0000B330
 		private static bool CheckStringExists(string stringToCheck)
 		{
 			return true;

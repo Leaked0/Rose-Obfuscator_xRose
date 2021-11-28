@@ -8,7 +8,7 @@ namespace Rose.Protections
 	// Token: 0x0200006E RID: 110
 	internal class Watermark
 	{
-		// Token: 0x0600015C RID: 348 RVA: 0x00014F78 File Offset: 0x00013178
+		// Token: 0x0600015C RID: 348 RVA: 0x0000F450 File Offset: 0x0000D650
 		public static void Execute(ModuleDefMD md)
 		{
 			using (IEnumerator<ModuleDef> enumerator = md.Assembly.Modules.GetEnumerator())

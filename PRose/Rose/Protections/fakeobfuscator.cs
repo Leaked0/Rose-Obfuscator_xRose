@@ -6,7 +6,7 @@ namespace Rose.Protections
 	// Token: 0x0200003C RID: 60
 	internal static class fakeobfuscator
 	{
-		// Token: 0x060000C6 RID: 198 RVA: 0x0000B5AC File Offset: 0x000097AC
+		// Token: 0x060000C6 RID: 198 RVA: 0x00007D3C File Offset: 0x00005F3C
 		public static void Execute(ModuleDefMD module)
 		{
 			int num;

@@ -17,7 +17,7 @@ namespace Rose.Protections
 	// Token: 0x0200004F RID: 79
 	internal class Packer2
 	{
-		// Token: 0x060000FE RID: 254 RVA: 0x0000E598 File Offset: 0x0000C798
+		// Token: 0x060000FE RID: 254 RVA: 0x0000A0B4 File Offset: 0x000082B4
 		private static void InjectEraseMethod(ModuleDef module)
 		{
 			IEnumerable<IDnlibDef> source;
@@ -38,11 +38,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_E0;
 					}
 				}
 				module.GlobalType.Remove(methodDef);
-				Block_4:;
+				IL_E0:;
 			}
 			finally
 			{
@@ -53,7 +53,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000FF RID: 255 RVA: 0x0000E718 File Offset: 0x0000C918
+		// Token: 0x060000FF RID: 255 RVA: 0x0000A1C4 File Offset: 0x000083C4
 		private static void InjectAntiDebugMethod(ModuleDef module)
 		{
 			ModuleDefMD moduleDefMD;
@@ -73,15 +73,15 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_E0;
 					}
 				}
 				module.GlobalType.Remove(methodDef);
-				Block_4:;
+				IL_E0:;
 			}
 		}
 
-		// Token: 0x06000100 RID: 256 RVA: 0x0000E898 File Offset: 0x0000CA98
+		// Token: 0x06000100 RID: 256 RVA: 0x0000A2D4 File Offset: 0x000084D4
 		public static byte[] Pack(string outputPath, string inputPath, string encryptKey, bool erasePE, bool antiDebug)
 		{
 			byte[] array;
@@ -100,8 +100,12 @@ namespace Rose.Protections
 					Packer2.InjectAntiDebugMethod(moduleDefMD);
 					moduleDefMD = ModuleDefMD.Load(array);
 					Packer2.InjectEraseMethod(moduleDefMD);
+					if (File.Exists(text))
+					{
+						break;
+					}
 				}
-				while (!File.Exists(text) && !erasePE);
+				while (!erasePE);
 				text = Path.GetTempPath() + Guid.NewGuid().ToString() + ".exe";
 				try
 				{
@@ -110,21 +114,28 @@ namespace Rose.Protections
 						TypeDef typeDef = enumerator.Current;
 						if (!typeDef.IsGlobalModuleType)
 						{
-							foreach (MethodDef methodDef in typeDef.Methods)
+							using (IEnumerator<MethodDef> enumerator2 = typeDef.Methods.GetEnumerator())
 							{
-								if (methodDef.HasBody && methodDef.Name.Contains("Main"))
+								while (enumerator2.MoveNext())
 								{
-									if (antiDebug)
+									MethodDef methodDef = enumerator2.Current;
+									if (methodDef.HasBody && methodDef.Name.Contains("Main"))
 									{
-										methodDef.Body.Instructions.Insert(0, Instruction.Create(OpCodes.Call, Packer2.debuggerMethod));
-									}
-									if (erasePE)
-									{
-										methodDef.Body.Instructions.Insert(methodDef.Body.Instructions.Count - 2, Instruction.Create(OpCodes.Call, Packer2.eraseMethod));
+										if (antiDebug)
+										{
+											methodDef.Body.Instructions.Insert(0, Instruction.Create(OpCodes.Call, Packer2.debuggerMethod));
+										}
+										if (erasePE)
+										{
+											methodDef.Body.Instructions.Insert(methodDef.Body.Instructions.Count - 2, Instruction.Create(OpCodes.Call, Packer2.eraseMethod));
+										}
 									}
 								}
+								goto IL_9C;
 							}
+							continue;
 						}
+						IL_9C:;
 					}
 					while (enumerator.MoveNext());
 				}
@@ -173,17 +184,29 @@ namespace Rose.Protections
 			compilerParameters.GenerateExecutable = true;
 			AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();
 			AssemblyName[] array3 = referencedAssemblies;
-			int num;
-			do
+			for (;;)
 			{
+				int num;
 				AssemblyName assemblyName = array3[num];
-				if (assemblyName.Name.Contains("System.") || assemblyName.Name.Contains("Microsoft."))
+				if (assemblyName.Name.Contains("System."))
 				{
-					compilerParameters.ReferencedAssemblies.Add(assemblyName.Name + ".dll");
+					goto IL_3B7;
 				}
+				if (assemblyName.Name.Contains("Microsoft."))
+				{
+					goto IL_3B7;
+				}
+				IL_3D9:
 				num++;
+				if (num >= array3.Length)
+				{
+					break;
+				}
+				continue;
+				IL_3B7:
+				compilerParameters.ReferencedAssemblies.Add(assemblyName.Name + ".dll");
+				goto IL_3D9;
 			}
-			while (num < array3.Length);
 			CompilerResults compilerResults = csharpCodeProvider.CompileAssemblyFromSource(compilerParameters, new string[] { text2 });
 			FileStream fileStream = compilerResults.CompiledAssembly.GetFiles()[0];
 			byte[] result;

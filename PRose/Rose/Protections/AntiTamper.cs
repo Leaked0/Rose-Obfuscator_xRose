@@ -12,7 +12,7 @@ namespace Rose.Protections
 	// Token: 0x02000016 RID: 22
 	public static class AntiTamper
 	{
-		// Token: 0x0600003A RID: 58 RVA: 0x00006670 File Offset: 0x00004870
+		// Token: 0x0600003A RID: 58 RVA: 0x00004B50 File Offset: 0x00002D50
 		public static void Sha256(string filePath)
 		{
 			FileStream fileStream = new FileStream(filePath, FileMode.Append);
@@ -30,7 +30,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x0600003B RID: 59 RVA: 0x0000671C File Offset: 0x0000491C
+		// Token: 0x0600003B RID: 59 RVA: 0x00004BC0 File Offset: 0x00002DC0
 		public static void Execute(ModuleDef module)
 		{
 			ModuleDefMD moduleDefMD = ModuleDefMD.Load(typeof(EofAntiTamper).Module);
@@ -53,11 +53,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_117;
 					}
 				}
 				module.GlobalType.Remove(methodDef2);
-				Block_4:;
+				IL_117:;
 			}
 			finally
 			{

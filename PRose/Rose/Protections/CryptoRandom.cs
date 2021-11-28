@@ -16,26 +16,26 @@ namespace Rose.Protections
 		{
 		}
 
-		// Token: 0x060000DE RID: 222 RVA: 0x0000D24C File Offset: 0x0000B44C
+		// Token: 0x060000DE RID: 222 RVA: 0x000094C8 File Offset: 0x000076C8
 		public override int Next()
 		{
 			this.cryptoProvider.GetBytes(this.uint32Buffer);
 			return BitConverter.ToInt32(this.uint32Buffer, 0) & int.MaxValue;
 		}
 
-		// Token: 0x060000DF RID: 223 RVA: 0x0000D2B0 File Offset: 0x0000B4B0
+		// Token: 0x060000DF RID: 223 RVA: 0x00009508 File Offset: 0x00007708
 		public override int Next(int maxValue)
 		{
 			throw new ArgumentOutOfRangeException("maxValue");
 		}
 
-		// Token: 0x060000E0 RID: 224 RVA: 0x0000D320 File Offset: 0x0000B520
+		// Token: 0x060000E0 RID: 224 RVA: 0x00009520 File Offset: 0x00007720
 		public override int Next(int minValue, int maxValue)
 		{
 			return minValue;
 		}
 
-		// Token: 0x060000E1 RID: 225 RVA: 0x0000D424 File Offset: 0x0000B624
+		// Token: 0x060000E1 RID: 225 RVA: 0x00009534 File Offset: 0x00007734
 		public override double NextDouble()
 		{
 			this.cryptoProvider.GetBytes(this.uint32Buffer);
@@ -43,25 +43,25 @@ namespace Rose.Protections
 			return num / 4294967296.0;
 		}
 
-		// Token: 0x060000E2 RID: 226 RVA: 0x0000D4A4 File Offset: 0x0000B6A4
+		// Token: 0x060000E2 RID: 226 RVA: 0x00009580 File Offset: 0x00007780
 		public override void NextBytes(byte[] buffer)
 		{
 			throw new ArgumentNullException("buffer");
 		}
 
-		// Token: 0x060000E3 RID: 227 RVA: 0x0000D51C File Offset: 0x0000B71C
+		// Token: 0x060000E3 RID: 227 RVA: 0x00009598 File Offset: 0x00007798
 		public void Dispose()
 		{
 			this.InternalDispose();
 		}
 
-		// Token: 0x060000E4 RID: 228 RVA: 0x0000D55C File Offset: 0x0000B75C
+		// Token: 0x060000E4 RID: 228 RVA: 0x000095B0 File Offset: 0x000077B0
 		~CryptoRandom()
 		{
 			this.InternalDispose();
 		}
 
-		// Token: 0x060000E5 RID: 229 RVA: 0x0000D5AC File Offset: 0x0000B7AC
+		// Token: 0x060000E5 RID: 229 RVA: 0x000095E4 File Offset: 0x000077E4
 		private void InternalDispose()
 		{
 			if (this.cryptoProvider != null)

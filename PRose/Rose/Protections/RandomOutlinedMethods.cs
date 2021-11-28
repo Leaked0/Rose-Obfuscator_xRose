@@ -9,7 +9,7 @@ namespace Rose.Protections
 	// Token: 0x0200004B RID: 75
 	internal class RandomOutlinedMethods : SecureRandoms
 	{
-		// Token: 0x060000ED RID: 237 RVA: 0x0000DCEC File Offset: 0x0000BEEC
+		// Token: 0x060000ED RID: 237 RVA: 0x00009B38 File Offset: 0x00007D38
 		public static void Execute(ModuleDef module)
 		{
 			using (IEnumerator<TypeDef> enumerator = module.Types.GetEnumerator())
@@ -58,7 +58,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000EE RID: 238 RVA: 0x0000DF84 File Offset: 0x0000C184
+		// Token: 0x060000EE RID: 238 RVA: 0x00009DA4 File Offset: 0x00007FA4
 		public static MethodDef CreateReturnMethodDef(object value, MethodDef source_method)
 		{
 			MethodDef methodDef;
@@ -66,22 +66,22 @@ namespace Rose.Protections
 			CorLibTypeSig retType = source_method.Module.CorLibTypes.Int32;
 			if (!(value is int))
 			{
-				goto IL_167;
+				goto IL_FD;
 			}
-			IL_8C:
+			IL_7A:
 			methodDef = new MethodDefUser(RUtils.GenerateRandomString2(xd.thelength), MethodSig.CreateStatic(retType), MethodImplAttributes.IL, MethodAttributes.FamANDAssem | MethodAttributes.Family | MethodAttributes.Static | MethodAttributes.HideBySig)
 			{
 				Body = new CilBody()
 			};
 			retType = source_method.Module.CorLibTypes.String;
-			IL_F5:
+			IL_C7:
 			if (!(value is string))
 			{
-				goto IL_8C;
+				goto IL_7A;
 			}
 			retType = null;
 			methodDef.Body.Instructions.Add(Instruction.Create(OpCodes.Ldstr, (string)value));
-			IL_167:
+			IL_FD:
 			if (value is string)
 			{
 			}
@@ -90,7 +90,7 @@ namespace Rose.Protections
 			{
 				return methodDef;
 			}
-			goto IL_F5;
+			goto IL_C7;
 		}
 	}
 }

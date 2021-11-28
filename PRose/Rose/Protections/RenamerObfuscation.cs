@@ -7,7 +7,7 @@ namespace Rose.Protections
 	// Token: 0x02000061 RID: 97
 	internal static class RenamerObfuscation
 	{
-		// Token: 0x06000137 RID: 311 RVA: 0x00012094 File Offset: 0x00010294
+		// Token: 0x06000137 RID: 311 RVA: 0x0000D144 File Offset: 0x0000B344
 		public static void Execute(ModuleDef module)
 		{
 			using (IEnumerator<TypeDef> enumerator = module.Types.GetEnumerator())
@@ -105,15 +105,22 @@ namespace Rose.Protections
 							{
 								eventDef4.Name = RUtils.RandomChinese(xd.thelength);
 							}
-							foreach (MethodDef methodDef4 in typeDef.Methods)
+							using (IEnumerator<MethodDef> enumerator17 = typeDef.Methods.GetEnumerator())
 							{
-								if (!methodDef4.Name.ToLower().Contains("main") && !methodDef4.IsConstructor)
+								while (enumerator17.MoveNext())
 								{
-									methodDef4.Name = RUtils.RandomChinese(xd.thelength);
+									MethodDef methodDef4 = enumerator17.Current;
+									if (!methodDef4.Name.ToLower().Contains("main") && !methodDef4.IsConstructor)
+									{
+										methodDef4.Name = RUtils.RandomChinese(xd.thelength);
+									}
 								}
+								goto IL_18;
 							}
+							continue;
 						}
 					}
+					IL_18:;
 				}
 				while (enumerator.MoveNext());
 			}

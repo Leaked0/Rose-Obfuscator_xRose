@@ -6,13 +6,13 @@ namespace Rose.Protections
 	// Token: 0x0200005D RID: 93
 	public static class NewRenamerObfuscation
 	{
-		// Token: 0x06000124 RID: 292 RVA: 0x0001157C File Offset: 0x0000F77C
+		// Token: 0x06000124 RID: 292 RVA: 0x0000CB24 File Offset: 0x0000AD24
 		public static void DoRenaming(ModuleDefMD md)
 		{
 			md = NewRenamerObfuscation.RenamingObfuscation(md);
 		}
 
-		// Token: 0x06000125 RID: 293 RVA: 0x000115C0 File Offset: 0x0000F7C0
+		// Token: 0x06000125 RID: 293 RVA: 0x0000CB40 File Offset: 0x0000AD40
 		private static ModuleDefMD RenamingObfuscation(ModuleDefMD inModule)
 		{
 			IRenaming renaming;

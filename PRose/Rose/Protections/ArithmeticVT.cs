@@ -13,19 +13,19 @@ namespace Rose.Protections
 			this.arithmeticTypes = arithmeticTypes;
 		}
 
-		// Token: 0x06000050 RID: 80 RVA: 0x00007CD0 File Offset: 0x00005ED0
+		// Token: 0x06000050 RID: 80 RVA: 0x0000542C File Offset: 0x0000362C
 		public Value GetValue()
 		{
 			return this.value;
 		}
 
-		// Token: 0x06000051 RID: 81 RVA: 0x00007D00 File Offset: 0x00005F00
+		// Token: 0x06000051 RID: 81 RVA: 0x00005444 File Offset: 0x00003644
 		public Token GetToken()
 		{
 			return this.token;
 		}
 
-		// Token: 0x06000052 RID: 82 RVA: 0x00007D30 File Offset: 0x00005F30
+		// Token: 0x06000052 RID: 82 RVA: 0x0000545C File Offset: 0x0000365C
 		public ArithmeticTypes GetArithmetic()
 		{
 			return this.arithmeticTypes;

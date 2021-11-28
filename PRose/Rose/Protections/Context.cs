@@ -6,7 +6,7 @@ namespace Rose.Protections
 	// Token: 0x02000006 RID: 6
 	public class Context
 	{
-		// Token: 0x06000014 RID: 20 RVA: 0x0000399C File Offset: 0x00001B9C
+		// Token: 0x06000014 RID: 20 RVA: 0x000032E8 File Offset: 0x000014E8
 		public Context(ModuleDef moduleDef)
 		{
 			this.ManifestModule = moduleDef.Assembly.ManifestModule;

@@ -8,7 +8,7 @@ namespace Rose.Protections
 	// Token: 0x02000040 RID: 64
 	internal class InvalidMDPhase
 	{
-		// Token: 0x060000CD RID: 205 RVA: 0x0000C150 File Offset: 0x0000A350
+		// Token: 0x060000CD RID: 205 RVA: 0x000087A8 File Offset: 0x000069A8
 		public static void Execute(AssemblyDef asm)
 		{
 			ModuleDef manifestModule;
@@ -93,7 +93,7 @@ namespace Rose.Protections
 				IsSealed = true
 			};
 			manifestModule.Types.Add(item5);
-			manifestModule.TablesHeaderVersion = new ushort?((ushort)257);
+			manifestModule.TablesHeaderVersion = new ushort?(257);
 		}
 
 		// Token: 0x02000041 RID: 65

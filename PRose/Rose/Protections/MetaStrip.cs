@@ -7,7 +7,7 @@ namespace Rose.Protections
 	// Token: 0x02000045 RID: 69
 	internal class MetaStrip
 	{
-		// Token: 0x060000D5 RID: 213 RVA: 0x0000CA4C File Offset: 0x0000AC4C
+		// Token: 0x060000D5 RID: 213 RVA: 0x00008F44 File Offset: 0x00007144
 		public static bool CanRename(object obj)
 		{
 			iAnalyze iAnalyze;
@@ -15,13 +15,13 @@ namespace Rose.Protections
 			{
 				if (!(obj is MethodDef))
 				{
-					goto IL_D6;
+					goto IL_34;
 				}
 				iAnalyze = new FieldDefAnalyzer();
-				IL_59:
+				IL_03:
 				if (!(obj is FieldDef))
 				{
-					goto IL_128;
+					goto IL_5F;
 				}
 				iAnalyze = new TypeDefAnalyzer();
 				iAnalyze = new EventDefAnalyzer();
@@ -30,22 +30,22 @@ namespace Rose.Protections
 					continue;
 				}
 				iAnalyze = new MethodDefAnalyzer();
-				IL_D6:
+				IL_34:
 				if (obj is EventDef)
 				{
 					break;
 				}
-				goto IL_59;
+				goto IL_03;
 			}
 			return false;
-			IL_128:
-			if (iAnalyze == null)
+			IL_5F:
+			if (iAnalyze != null)
 			{
 			}
 			return iAnalyze.Execute(obj);
 		}
 
-		// Token: 0x060000D6 RID: 214 RVA: 0x0000CBB8 File Offset: 0x0000ADB8
+		// Token: 0x060000D6 RID: 214 RVA: 0x00008FC4 File Offset: 0x000071C4
 		public static void Execute(ModuleDefMD module)
 		{
 			using (IEnumerator<CustomAttribute> enumerator = module.Assembly.CustomAttributes.GetEnumerator())

@@ -9,7 +9,7 @@ namespace Rose.Protections
 	// Token: 0x02000049 RID: 73
 	internal static class Mutation
 	{
-		// Token: 0x060000E6 RID: 230 RVA: 0x0000D624 File Offset: 0x0000B824
+		// Token: 0x060000E6 RID: 230 RVA: 0x00009614 File Offset: 0x00007814
 		public static void Execute(ModuleDefMD moduleDefMd)
 		{
 			IEnumerator<TypeDef> enumerator = moduleDefMd.GetTypes().GetEnumerator();
@@ -21,9 +21,13 @@ namespace Rose.Protections
 				{
 					TypeDef typeDef = enumerator.Current;
 					List<MethodDef> list = new List<MethodDef>();
-					foreach (MethodDef methodDef in from x in typeDef.Methods
-						where x.HasBody
-						select x)
+					IEnumerable<MethodDef> methods = typeDef.Methods;
+					Func<MethodDef, bool> predicate;
+					if ((predicate = Mutation.<>c.<>9__1_0) == null)
+					{
+						predicate = (Mutation.<>c.<>9__1_0 = (MethodDef x) => x.HasBody);
+					}
+					foreach (MethodDef methodDef in methods.Where(predicate))
 					{
 						IList<Instruction> instructions = methodDef.Body.Instructions;
 						int num;
@@ -75,7 +79,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000E7 RID: 231 RVA: 0x0000D9CC File Offset: 0x0000BBCC
+		// Token: 0x060000E7 RID: 231 RVA: 0x00009974 File Offset: 0x00007B74
 		private static MethodDef GenerateRefMethod(string methodName)
 		{
 			MethodDefUser methodDefUser;
@@ -101,13 +105,13 @@ namespace Rose.Protections
 			return methodDefUser.ResolveMethodDef();
 		}
 
-		// Token: 0x060000E8 RID: 232 RVA: 0x0000DC28 File Offset: 0x0000BE28
+		// Token: 0x060000E8 RID: 232 RVA: 0x000057E8 File Offset: 0x000039E8
 		private static bool IsSafe(List<Instruction> instructions, int i)
 		{
 			return false;
 		}
 
-		// Token: 0x060000E9 RID: 233 RVA: 0x0000DCA8 File Offset: 0x0000BEA8
+		// Token: 0x060000E9 RID: 233 RVA: 0x00009B10 File Offset: 0x00007D10
 		private static IMethod GetMethod(Type type, string methodName, Type[] types)
 		{
 			return Mutation._moduleDefMd.Import(type.GetMethod(methodName, types));

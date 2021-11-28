@@ -8,7 +8,7 @@ namespace Rose.Protections
 	// Token: 0x02000058 RID: 88
 	public class ClassesRenaming : IRenaming
 	{
-		// Token: 0x06000115 RID: 277 RVA: 0x00010238 File Offset: 0x0000E438
+		// Token: 0x06000115 RID: 277 RVA: 0x0000B994 File Offset: 0x00009B94
 		public ModuleDefMD Rename(ModuleDefMD module)
 		{
 			using (IEnumerator<TypeDef> enumerator = module.GetTypes().GetEnumerator())
@@ -57,7 +57,7 @@ namespace Rose.Protections
 			return ClassesRenaming.ApplyChangesToResources(module);
 		}
 
-		// Token: 0x06000116 RID: 278 RVA: 0x000104D4 File Offset: 0x0000E6D4
+		// Token: 0x06000116 RID: 278 RVA: 0x0000BBF4 File Offset: 0x00009DF4
 		private static ModuleDefMD ApplyChangesToResources(ModuleDefMD module)
 		{
 			using (IEnumerator<Resource> enumerator = module.Resources.GetEnumerator())
@@ -87,14 +87,21 @@ namespace Rose.Protections
 						{
 							if (instructions[num].OpCode == OpCodes.Ldstr)
 							{
-								foreach (KeyValuePair<string, string> keyValuePair2 in ClassesRenaming._names)
+								using (Dictionary<string, string>.Enumerator enumerator5 = ClassesRenaming._names.GetEnumerator())
 								{
-									if (instructions[num].Operand.ToString().Contains(keyValuePair2.Key))
+									while (enumerator5.MoveNext())
 									{
-										instructions[num].Operand = instructions[num].Operand.ToString().Replace(keyValuePair2.Key, keyValuePair2.Value);
+										KeyValuePair<string, string> keyValuePair2 = enumerator5.Current;
+										if (instructions[num].Operand.ToString().Contains(keyValuePair2.Key))
+										{
+											instructions[num].Operand = instructions[num].Operand.ToString().Replace(keyValuePair2.Key, keyValuePair2.Value);
+										}
 									}
+									goto IL_147;
 								}
+								continue;
 							}
+							IL_147:
 							num++;
 						}
 						while (num < instructions.Count);

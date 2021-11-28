@@ -9,7 +9,7 @@ namespace Rose.Protections
 	// Token: 0x02000005 RID: 5
 	public class AntiDe4dot
 	{
-		// Token: 0x06000010 RID: 16 RVA: 0x000033E4 File Offset: 0x000015E4
+		// Token: 0x06000010 RID: 16 RVA: 0x00002EF4 File Offset: 0x000010F4
 		public static void Execute1(AssemblyDef mod)
 		{
 			using (IEnumerator<ModuleDef> enumerator = mod.Modules.GetEnumerator())
@@ -34,7 +34,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x06000011 RID: 17 RVA: 0x0000351C File Offset: 0x0000171C
+		// Token: 0x06000011 RID: 17 RVA: 0x00003004 File Offset: 0x00001204
 		public static void Execute2(Context context, ModuleDef moduleDef)
 		{
 			TypeDef typeDef;
@@ -75,7 +75,7 @@ namespace Rose.Protections
 			};
 		}
 
-		// Token: 0x06000012 RID: 18 RVA: 0x00003900 File Offset: 0x00001B00
+		// Token: 0x06000012 RID: 18 RVA: 0x0000329C File Offset: 0x0000149C
 		public static ModuleWriterOptions Execute(ModuleDef moduleDef)
 		{
 			Context context;

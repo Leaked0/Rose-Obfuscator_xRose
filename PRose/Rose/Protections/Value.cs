@@ -12,13 +12,13 @@ namespace Rose.Protections
 			this.y = y;
 		}
 
-		// Token: 0x06000097 RID: 151 RVA: 0x000088B8 File Offset: 0x00006AB8
+		// Token: 0x06000097 RID: 151 RVA: 0x00005874 File Offset: 0x00003A74
 		public double GetX()
 		{
 			return this.x;
 		}
 
-		// Token: 0x06000098 RID: 152 RVA: 0x000088E8 File Offset: 0x00006AE8
+		// Token: 0x06000098 RID: 152 RVA: 0x0000588C File Offset: 0x00003A8C
 		public double GetY()
 		{
 			return this.y;

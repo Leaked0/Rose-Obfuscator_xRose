@@ -8,7 +8,7 @@ namespace Rose.Protections
 	// Token: 0x0200001A RID: 26
 	public class Arithmetic
 	{
-		// Token: 0x06000043 RID: 67 RVA: 0x00006AEC File Offset: 0x00004CEC
+		// Token: 0x06000043 RID: 67 RVA: 0x00004D94 File Offset: 0x00002F94
 		public static void Execute(ModuleDef moduleDef)
 		{
 			Arithmetic.moduleDef1 = moduleDef;
@@ -34,7 +34,7 @@ namespace Rose.Protections
 										List<Instruction> list = Arithmetic.GenerateBody(iFunction.Arithmetic(methodDef.Body.Instructions[num], moduleDef));
 										if (list == null)
 										{
-											goto IL_2D1;
+											goto IL_268;
 										}
 										methodDef.Body.Instructions[num].OpCode = OpCodes.Nop;
 										using (List<Instruction>.Enumerator enumerator3 = list.GetEnumerator())
@@ -45,7 +45,7 @@ namespace Rose.Protections
 												methodDef.Body.Instructions.Insert(num + 1, item);
 												num++;
 											}
-											goto IL_2D1;
+											goto IL_268;
 										}
 									}
 									iFunction iFunction2 = Arithmetic.Tasks[generator.Next(Arithmetic.Tasks.Count)];
@@ -60,7 +60,7 @@ namespace Rose.Protections
 										}
 									}
 								}
-								IL_2D1:
+								IL_268:
 								num++;
 							}
 							while (num < methodDef.Body.Instructions.Count);
@@ -78,7 +78,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x06000044 RID: 68 RVA: 0x00006EA4 File Offset: 0x000050A4
+		// Token: 0x06000044 RID: 68 RVA: 0x000050F0 File Offset: 0x000032F0
 		private static List<Instruction> GenerateBody(ArithmeticVT arithmeticVTs)
 		{
 			List<Instruction> list;
@@ -105,13 +105,13 @@ namespace Rose.Protections
 			return list;
 		}
 
-		// Token: 0x06000045 RID: 69 RVA: 0x00007128 File Offset: 0x00005328
+		// Token: 0x06000045 RID: 69 RVA: 0x00005294 File Offset: 0x00003494
 		private static bool IsArithmetic(ArithmeticTypes arithmetic)
 		{
 			return arithmetic == ArithmeticTypes.Tanh || arithmetic == ArithmeticTypes.Cos || arithmetic == ArithmeticTypes.Sin || arithmetic == ArithmeticTypes.Sub || arithmetic == ArithmeticTypes.Log10 || arithmetic == ArithmeticTypes.Ceiling;
 		}
 
-		// Token: 0x06000046 RID: 70 RVA: 0x0000730C File Offset: 0x0000550C
+		// Token: 0x06000046 RID: 70 RVA: 0x000052EC File Offset: 0x000034EC
 		private static bool IsXor(ArithmeticTypes arithmetic)
 		{
 			return arithmetic == ArithmeticTypes.Xor;

@@ -16,7 +16,7 @@ namespace Rose.Protections
 		[DllImport("kernel32.dll")]
 		public static extern IntPtr VirtualProtect(IntPtr lpAddress, IntPtr dwSize, IntPtr flNewProtect, ref IntPtr lpflOldProtect);
 
-		// Token: 0x06000027 RID: 39 RVA: 0x00005B38 File Offset: 0x00003D38
+		// Token: 0x06000027 RID: 39 RVA: 0x000043FC File Offset: 0x000025FC
 		public static void EraseSection(IntPtr address, int size)
 		{
 			IntPtr intPtr;
@@ -30,11 +30,10 @@ namespace Rose.Protections
 			zero = IntPtr.Zero;
 		}
 
-		// Token: 0x06000028 RID: 40 RVA: 0x00005C14 File Offset: 0x00003E14
+		// Token: 0x06000028 RID: 40 RVA: 0x00004468 File Offset: 0x00002668
 		public static void WUIOL()
 		{
-			int num;
-			num++;
+			int num = 1;
 			int num2 = 0;
 			Process currentProcess;
 			IntPtr baseAddress = currentProcess.MainModule.BaseAddress;
@@ -54,13 +53,13 @@ namespace Rose.Protections
 					int num5;
 					if (num5 != 0)
 					{
-						goto IL_2C0;
+						goto IL_14A;
 					}
 					num5 = 0;
 					short num6 = Marshal.ReadInt16((IntPtr)(baseAddress.ToInt32() + num3 + 6));
 					currentProcess = Process.GetCurrentProcess();
 					num = 0;
-					IL_1E8:
+					IL_C6:
 					if (num2 <= (int)num6)
 					{
 						continue;
@@ -68,12 +67,12 @@ namespace Rose.Protections
 					num4 = 0;
 					if (num < list.Count)
 					{
-						goto IL_39C;
+						goto IL_24A;
 					}
 					AntiDump2.EraseSection((IntPtr)(baseAddress.ToInt32() + num3 + 250 + 40 * num2 + 32), 2);
 					num5 = 0;
 					list2 = new List<int> { 26, 27 };
-					IL_2C0:
+					IL_14A:
 					num5++;
 					num2++;
 					List<int> list3 = new List<int> { 8, 12, 16, 20, 24, 28, 36 };
@@ -83,12 +82,13 @@ namespace Rose.Protections
 					}
 					if (num5 == list3.Count)
 					{
-						goto IL_39C;
+						goto Block_1;
 					}
-					goto IL_1E8;
+					goto IL_C6;
 				}
 			}
-			IL_39C:
+			Block_1:
+			IL_24A:
 			AntiDump2.EraseSection((IntPtr)(baseAddress.ToInt32() + num3 + list[num]), 1);
 			num3 = Marshal.ReadInt32((IntPtr)(baseAddress.ToInt32() + 60));
 			num4++;

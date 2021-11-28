@@ -9,7 +9,7 @@ namespace Rose.Protections
 	// Token: 0x02000051 RID: 81
 	internal class proxy
 	{
-		// Token: 0x06000106 RID: 262 RVA: 0x0000EE50 File Offset: 0x0000D050
+		// Token: 0x06000106 RID: 262 RVA: 0x0000A7D4 File Offset: 0x000089D4
 		public static void Execute(ModuleDefMD mod)
 		{
 			int num = 0;
@@ -101,7 +101,7 @@ namespace Rose.Protections
 			while (num < num2);
 		}
 
-		// Token: 0x06000107 RID: 263 RVA: 0x0000F208 File Offset: 0x0000D408
+		// Token: 0x06000107 RID: 263 RVA: 0x0000AB1C File Offset: 0x00008D1C
 		public static MethodDef Clonesignature(MethodDef from, MethodDef to)
 		{
 			if (from.IsHideBySig)

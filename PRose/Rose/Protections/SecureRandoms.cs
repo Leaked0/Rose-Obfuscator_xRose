@@ -7,28 +7,21 @@ namespace Rose.Protections
 	// Token: 0x0200004C RID: 76
 	public class SecureRandoms
 	{
-		// Token: 0x060000F0 RID: 240 RVA: 0x0000E170 File Offset: 0x0000C370
+		// Token: 0x060000F0 RID: 240 RVA: 0x00009EC8 File Offset: 0x000080C8
 		public static int Next(int minValue, int maxExclusiveValue)
 		{
-			uint randomUInt;
-			long num;
-			if ((ulong)randomUInt >= (ulong)num || minValue >= maxExclusiveValue)
-			{
-				randomUInt = SecureRandoms.GetRandomUInt();
-			}
-			long num2 = (long)maxExclusiveValue - (long)minValue;
-			num = (long)((ulong)(-1) / (ulong)num2 * (ulong)num2);
+			SecureRandoms.GetRandomUInt();
 			throw new ArgumentOutOfRangeException("minValue must be lower than maxExclusiveValue");
 		}
 
-		// Token: 0x060000F1 RID: 241 RVA: 0x0000E250 File Offset: 0x0000C450
+		// Token: 0x060000F1 RID: 241 RVA: 0x00009EE8 File Offset: 0x000080E8
 		public static uint GetRandomUInt()
 		{
 			byte[] value = SecureRandoms.GenerateRandomBytes(4);
 			return BitConverter.ToUInt32(value, 0);
 		}
 
-		// Token: 0x060000F2 RID: 242 RVA: 0x0000E2A0 File Offset: 0x0000C4A0
+		// Token: 0x060000F2 RID: 242 RVA: 0x00009F14 File Offset: 0x00008114
 		public static byte[] GenerateRandomBytes(int bytesNumber)
 		{
 			byte[] array;
@@ -37,7 +30,7 @@ namespace Rose.Protections
 			return array;
 		}
 
-		// Token: 0x060000F3 RID: 243 RVA: 0x0000E304 File Offset: 0x0000C504
+		// Token: 0x060000F3 RID: 243 RVA: 0x00009F40 File Offset: 0x00008140
 		public static string GenerateRandomString(int size)
 		{
 			byte[] array = new byte[4 * size];

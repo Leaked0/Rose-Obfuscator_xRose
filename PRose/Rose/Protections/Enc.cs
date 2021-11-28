@@ -10,7 +10,7 @@ namespace Rose.Protections
 	// Token: 0x02000067 RID: 103
 	public static class Enc
 	{
-		// Token: 0x06000146 RID: 326 RVA: 0x000141D4 File Offset: 0x000123D4
+		// Token: 0x06000146 RID: 326 RVA: 0x0000EB50 File Offset: 0x0000CD50
 		private static MethodDef InjectMethod(ModuleDef module, string methodName)
 		{
 			ModuleDefMD moduleDefMD;
@@ -31,11 +31,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_3;
+						goto IL_E5;
 					}
 				}
 				module.GlobalType.Remove(methodDef);
-				Block_3:;
+				IL_E5:;
 			}
 			finally
 			{
@@ -47,7 +47,7 @@ namespace Rose.Protections
 			return result;
 		}
 
-		// Token: 0x06000147 RID: 327 RVA: 0x00014374 File Offset: 0x00012574
+		// Token: 0x06000147 RID: 327 RVA: 0x0000EC68 File Offset: 0x0000CE68
 		public static ModuleDef EncryptStrings(ModuleDef inModule)
 		{
 			MethodDef methodDef = Enc.InjectMethod(inModule, "qUSxo");
@@ -60,28 +60,35 @@ namespace Rose.Protections
 					TypeDef typeDef = enumerator.Current;
 					if (!typeDef.IsGlobalModuleType && !(typeDef.Name == "Resources") && !(typeDef.Name == "Settings"))
 					{
-						foreach (MethodDef methodDef2 in typeDef.Methods)
+						using (IEnumerator<MethodDef> enumerator2 = typeDef.Methods.GetEnumerator())
 						{
-							if (methodDef2.HasBody && methodDef2 != methodDef)
+							while (enumerator2.MoveNext())
 							{
-								methodDef2.Body.KeepOldMaxStack = true;
-								int num;
-								do
+								MethodDef methodDef2 = enumerator2.Current;
+								if (methodDef2.HasBody && methodDef2 != methodDef)
 								{
-									if (methodDef2.Body.Instructions[num].OpCode == OpCodes.Ldstr)
+									methodDef2.Body.KeepOldMaxStack = true;
+									int num;
+									do
 									{
-										string dataPlain = methodDef2.Body.Instructions[num].Operand.ToString();
-										methodDef2.Body.Instructions[num].Operand = crypto.Encrypt(dataPlain);
-										methodDef2.Body.Instructions.Insert(num + 1, new Instruction(OpCodes.Call, methodDef));
+										if (methodDef2.Body.Instructions[num].OpCode == OpCodes.Ldstr)
+										{
+											string dataPlain = methodDef2.Body.Instructions[num].Operand.ToString();
+											methodDef2.Body.Instructions[num].Operand = crypto.Encrypt(dataPlain);
+											methodDef2.Body.Instructions.Insert(num + 1, new Instruction(OpCodes.Call, methodDef));
+										}
+										num++;
 									}
-									num++;
+									while (num < methodDef2.Body.Instructions.Count);
+									methodDef2.Body.SimplifyBranches();
+									methodDef2.Body.OptimizeBranches();
 								}
-								while (num < methodDef2.Body.Instructions.Count);
-								methodDef2.Body.SimplifyBranches();
-								methodDef2.Body.OptimizeBranches();
 							}
+							goto IL_3B;
 						}
+						continue;
 					}
+					IL_3B:;
 				}
 				while (enumerator.MoveNext());
 			}

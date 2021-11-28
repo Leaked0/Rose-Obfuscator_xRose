@@ -8,21 +8,20 @@ namespace Rose.Protections
 	// Token: 0x02000035 RID: 53
 	internal class Blocks
 	{
-		// Token: 0x060000A0 RID: 160 RVA: 0x00008918 File Offset: 0x00006B18
+		// Token: 0x060000A0 RID: 160 RVA: 0x000058A4 File Offset: 0x00003AA4
 		public static List<Block> Block(MethodDef method)
 		{
 			Block block = new Block();
 			List<Block> list = new List<Block>();
 			IEnumerator<Instruction> enumerator = method.Body.Instructions.GetEnumerator();
-			int num;
-			block.Number = num;
-			int num2 = 0;
+			block.Number = 0;
+			int num = 0;
 			Stack<ExceptionHandler> stack = new Stack<ExceptionHandler>();
-			List<Instruction> list2 = new List<Instruction>(method.Body.Instructions);
+			new List<Instruction>(method.Body.Instructions);
 			block = new Block();
 			block.Instructions.Add(Instruction.Create(OpCodes.Nop));
 			list.Add(block);
-			num = 0;
+			int num2 = 0;
 			try
 			{
 				do
@@ -46,10 +45,10 @@ namespace Rose.Protections
 					int num4;
 					instruction.CalculateStackUsage(out num3, out num4);
 					block.Instructions.Add(instruction);
-					num2 += num3 - num4;
-					if (num3 == 0 && instruction.OpCode != OpCodes.Nop && (num2 == 0 || instruction.OpCode == OpCodes.Ret) && stack.Count == 0)
+					num += num3 - num4;
+					if (num3 == 0 && instruction.OpCode != OpCodes.Nop && (num == 0 || instruction.OpCode == OpCodes.Ret) && stack.Count == 0)
 					{
-						num = (block.Number = num + 1);
+						num2 = (block.Number = num2 + 1);
 						list.Add(block);
 						block = new Block();
 					}

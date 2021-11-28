@@ -13,7 +13,7 @@ namespace Rose.Protections
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool IsDebuggerPresent();
 
-		// Token: 0x06000021 RID: 33 RVA: 0x000041B4 File Offset: 0x000023B4
+		// Token: 0x06000021 RID: 33 RVA: 0x00003704 File Offset: 0x00001904
 		public static void CEKQW()
 		{
 			Application.Exit();

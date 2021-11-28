@@ -10,13 +10,13 @@ namespace Rose.Protections
 	// Token: 0x02000064 RID: 100
 	public static class First
 	{
-		// Token: 0x0600013C RID: 316 RVA: 0x00013308 File Offset: 0x00011508
+		// Token: 0x0600013C RID: 316 RVA: 0x0000E138 File Offset: 0x0000C338
 		public static void Execute(ModuleDef md)
 		{
 			First.StringEncrypting(md);
 		}
 
-		// Token: 0x0600013D RID: 317 RVA: 0x00013348 File Offset: 0x00011548
+		// Token: 0x0600013D RID: 317 RVA: 0x0000E150 File Offset: 0x0000C350
 		public static void StringEncrypting(ModuleDef moduleDef)
 		{
 			TypeDef typeDef = null;
@@ -33,11 +33,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_5A;
 					}
 				}
 				typeDef = typeDef2;
-				Block_4:;
+				IL_5A:;
 			}
 			foreach (TypeDef typeDef3 in moduleDef.Types)
 			{
@@ -67,13 +67,12 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x0600013E RID: 318 RVA: 0x00013634 File Offset: 0x00011834
+		// Token: 0x0600013E RID: 318 RVA: 0x0000E3F4 File Offset: 0x0000C5F4
 		public static void DefType(ModuleDef moduleDef)
 		{
 			MethodDef methodDef;
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Ldc_I4_0));
 			methodDef.Body.Variables.Locals.Add(new Local(methodDef.Module.CorLibTypes.Int32));
-			MethodImplAttributes implFlags = MethodImplAttributes.IL;
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Ldelema, moduleDef.Import(typeof(byte))));
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Ldind_U1));
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Ldloc_1));
@@ -95,7 +94,7 @@ namespace Rose.Protections
 			type = importer.Import(typeof(byte[]));
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Ldloc_0));
 			MethodAttributes flags;
-			MethodDefUser item = new MethodDefUser(First.y, MethodSig.CreateStatic(moduleDef.CorLibTypes.String, moduleDef.CorLibTypes.String), implFlags, flags);
+			MethodDefUser item = new MethodDefUser(First.y, MethodSig.CreateStatic(moduleDef.CorLibTypes.String, moduleDef.CorLibTypes.String), MethodImplAttributes.IL, flags);
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Sub));
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Ldc_I4_1));
 			methodDef.Body.Instructions.Add(new Instruction(OpCodes.Call, moduleDef.Import(typeof(Encoding).GetMethod("get_ASCII", new Type[0]))));
@@ -126,20 +125,19 @@ namespace Rose.Protections
 			instruction2 = Instruction.Create(OpCodes.Ldloc_0);
 		}
 
-		// Token: 0x0600013F RID: 319 RVA: 0x00013ED4 File Offset: 0x000120D4
+		// Token: 0x0600013F RID: 319 RVA: 0x0000E9D0 File Offset: 0x0000CBD0
 		private static byte[] StrToBytes(string str)
 		{
 			return Encoding.ASCII.GetBytes(str);
 		}
 
-		// Token: 0x06000140 RID: 320 RVA: 0x00013F08 File Offset: 0x00012108
+		// Token: 0x06000140 RID: 320 RVA: 0x0000E9EC File Offset: 0x0000CBEC
 		private static string EncryptString(string str)
 		{
-			int num;
-			num++;
+			int num = 1;
 			byte[] array;
 			byte[] array3;
-			if (num >= array.Length)
+			if (1 >= array.Length)
 			{
 				int num2 = num;
 				byte[] array2 = array3;
@@ -148,28 +146,27 @@ namespace Rose.Protections
 			}
 			array3 = array;
 			array = First.StrToBytes(str);
-			num = 0;
 			return Encoding.ASCII.GetString(array);
 		}
 
-		// Token: 0x06000141 RID: 321 RVA: 0x00014008 File Offset: 0x00012208
+		// Token: 0x06000141 RID: 321 RVA: 0x0000EA54 File Offset: 0x0000CC54
 		private static string DecryptString(string str)
 		{
-			int num;
 			byte[] bytes;
 			byte[] array2;
-			if (num >= bytes.Length)
+			int num3;
+			if (0 >= bytes.Length)
 			{
 				byte[] array = array2;
-				int num3;
-				int num2 = num3;
-				array[num2] -= 1;
-				num3 = num;
-				num = 0;
+				int num2;
+				int num = num2;
+				array[num] -= 1;
+				num2 = num3;
+				num3 = 0;
 			}
 			array2 = bytes;
 			bytes = Encoding.ASCII.GetBytes(str);
-			num++;
+			num3++;
 			return Encoding.ASCII.GetString(bytes);
 		}
 

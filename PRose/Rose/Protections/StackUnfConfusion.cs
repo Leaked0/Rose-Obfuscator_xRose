@@ -8,7 +8,7 @@ namespace Rose.Protections
 	// Token: 0x02000063 RID: 99
 	internal class StackUnfConfusion
 	{
-		// Token: 0x0600013A RID: 314 RVA: 0x00012FE8 File Offset: 0x000111E8
+		// Token: 0x0600013A RID: 314 RVA: 0x0000DE7C File Offset: 0x0000C07C
 		public static void Execute(ModuleDef mod)
 		{
 			using (IEnumerator<TypeDef> enumerator = mod.Types.GetEnumerator())

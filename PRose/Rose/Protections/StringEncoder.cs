@@ -11,7 +11,7 @@ namespace Rose.Protections
 	// Token: 0x0200006A RID: 106
 	internal static class StringEncoder
 	{
-		// Token: 0x0600014B RID: 331 RVA: 0x00014614 File Offset: 0x00012814
+		// Token: 0x0600014B RID: 331 RVA: 0x0000EEC8 File Offset: 0x0000D0C8
 		public static void Execute(ModuleDefMD moduleDefMd)
 		{
 			TypeDef typeDef;
@@ -27,9 +27,13 @@ namespace Rose.Protections
 				do
 				{
 					TypeDef typeDef2 = enumerator.Current;
-					foreach (MethodDef methodDef in from x in typeDef2.Methods
-						where x.HasBody
-						select x)
+					IEnumerable<MethodDef> methods = typeDef2.Methods;
+					Func<MethodDef, bool> predicate;
+					if ((predicate = StringEncoder.<>c.<>9__0_1) == null)
+					{
+						predicate = (StringEncoder.<>c.<>9__0_1 = (MethodDef x) => x.HasBody);
+					}
+					foreach (MethodDef methodDef in methods.Where(predicate))
 					{
 						IList<Instruction> instructions = methodDef.Body.Instructions;
 						int num;
@@ -62,24 +66,21 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x0600014C RID: 332 RVA: 0x00014944 File Offset: 0x00012B44
+		// Token: 0x0600014C RID: 332 RVA: 0x0000F1A0 File Offset: 0x0000D3A0
 		private static string EncryptString(Tuple<string, int> values)
 		{
-			int num;
-			num++;
+			int num = 1;
 			string item = values.Item1;
 			StringBuilder stringBuilder;
 			char c;
-			int item2;
-			stringBuilder.Append((char)((int)c ^ item2));
+			stringBuilder.Append(c ^ '\0');
 			do
 			{
 				c = item[num];
 			}
 			while (num < item.Length);
 			stringBuilder = new StringBuilder();
-			item2 = values.Item2;
-			num = 0;
+			int item2 = values.Item2;
 			return stringBuilder.ToString();
 		}
 	}

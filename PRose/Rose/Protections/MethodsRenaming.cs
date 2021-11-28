@@ -7,7 +7,7 @@ namespace Rose.Protections
 	// Token: 0x0200005B RID: 91
 	public class MethodsRenaming : IRenaming
 	{
-		// Token: 0x0600011E RID: 286 RVA: 0x00010D04 File Offset: 0x0000EF04
+		// Token: 0x0600011E RID: 286 RVA: 0x0000C374 File Offset: 0x0000A574
 		public ModuleDefMD Rename(ModuleDefMD module)
 		{
 			using (IEnumerator<TypeDef> enumerator = module.GetTypes().GetEnumerator())
@@ -17,29 +17,36 @@ namespace Rose.Protections
 					TypeDef typeDef = enumerator.Current;
 					if (!typeDef.IsGlobalModuleType && !(typeDef.Name == "GeneratedInternalTypeHelper"))
 					{
-						foreach (MethodDef methodDef in typeDef.Methods)
+						using (IEnumerator<MethodDef> enumerator2 = typeDef.Methods.GetEnumerator())
 						{
-							if (methodDef.HasBody && !(methodDef.Name == ".ctor") && !(methodDef.Name == ".cctor"))
+							while (enumerator2.MoveNext())
 							{
-								if (xd.renamertype == "Ascii")
+								MethodDef methodDef = enumerator2.Current;
+								if (methodDef.HasBody && !(methodDef.Name == ".ctor") && !(methodDef.Name == ".cctor"))
 								{
-									methodDef.Name = RUtils.GenerateRandomString2(xd.thelength);
-								}
-								if (xd.renamertype == "Numbers")
-								{
-									methodDef.Name = RUtils.RandomNum(xd.thelength);
-								}
-								if (xd.renamertype == "Symbols")
-								{
-									methodDef.Name = RUtils.RandomSymbols(xd.thelength);
-								}
-								if (xd.renamertype == "Chinese")
-								{
-									methodDef.Name = RUtils.RandomChinese(xd.thelength);
+									if (xd.renamertype == "Ascii")
+									{
+										methodDef.Name = RUtils.GenerateRandomString2(xd.thelength);
+									}
+									if (xd.renamertype == "Numbers")
+									{
+										methodDef.Name = RUtils.RandomNum(xd.thelength);
+									}
+									if (xd.renamertype == "Symbols")
+									{
+										methodDef.Name = RUtils.RandomSymbols(xd.thelength);
+									}
+									if (xd.renamertype == "Chinese")
+									{
+										methodDef.Name = RUtils.RandomChinese(xd.thelength);
+									}
 								}
 							}
+							goto IL_20;
 						}
+						continue;
 					}
+					IL_20:;
 				}
 				while (enumerator.MoveNext());
 			}

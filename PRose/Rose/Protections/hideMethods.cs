@@ -8,7 +8,7 @@ namespace Rose.Protections
 	// Token: 0x0200003D RID: 61
 	internal class hideMethods
 	{
-		// Token: 0x060000C8 RID: 200 RVA: 0x0000B74C File Offset: 0x0000994C
+		// Token: 0x060000C8 RID: 200 RVA: 0x00007E5C File Offset: 0x0000605C
 		public static void Execute(ModuleDefMD asm)
 		{
 			asm.Import(new FieldDefUser(RUtils.RandomSymbols(5)));
@@ -65,8 +65,7 @@ namespace Rose.Protections
 									TryEnd = methodDef.Body.Instructions[14],
 									TryStart = methodDef.Body.Instructions[12]
 								};
-								bool flag = !methodDef.Body.HasExceptionHandlers;
-								if (flag)
+								if (!methodDef.Body.HasExceptionHandlers)
 								{
 									methodDef.Body.ExceptionHandlers.Add(item2);
 								}

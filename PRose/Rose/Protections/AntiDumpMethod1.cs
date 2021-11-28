@@ -10,7 +10,7 @@ namespace Rose.Protections
 	// Token: 0x0200000F RID: 15
 	public static class AntiDumpMethod1
 	{
-		// Token: 0x06000029 RID: 41 RVA: 0x00006050 File Offset: 0x00004250
+		// Token: 0x06000029 RID: 41 RVA: 0x00004718 File Offset: 0x00002918
 		public static void Execute(ModuleDef module)
 		{
 			IEnumerable<IDnlibDef> source;
@@ -34,11 +34,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_117;
 					}
 				}
 				module.GlobalType.Remove(methodDef2);
-				Block_4:;
+				IL_117:;
 			}
 			finally
 			{

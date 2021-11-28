@@ -9,7 +9,7 @@ namespace Rose.Protections
 	// Token: 0x02000053 RID: 83
 	public static class ProxyMeth
 	{
-		// Token: 0x0600010B RID: 267 RVA: 0x0000F644 File Offset: 0x0000D844
+		// Token: 0x0600010B RID: 267 RVA: 0x0000AED4 File Offset: 0x000090D4
 		public static void ScanMemberRef(ModuleDef module)
 		{
 			using (IEnumerator<TypeDef> enumerator = module.Types.GetEnumerator())
@@ -48,7 +48,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x0600010C RID: 268 RVA: 0x0000F81C File Offset: 0x0000DA1C
+		// Token: 0x0600010C RID: 268 RVA: 0x0000B06C File Offset: 0x0000926C
 		public static MethodDef GenerateSwitch(MemberRef original, ModuleDef md)
 		{
 			MethodDef result;
@@ -56,9 +56,7 @@ namespace Rose.Protections
 			{
 				List<TypeSig> list = original.MethodSig.Params.ToList<TypeSig>();
 				list.Add(md.CorLibTypes.Int32);
-				MethodImplAttributes implFlags = MethodImplAttributes.IL;
-				MethodAttributes flags = MethodAttributes.FamANDAssem | MethodAttributes.Family | MethodAttributes.Static | MethodAttributes.HideBySig;
-				MethodDef methodDef = new MethodDefUser(string.Format("ProxyMeth{0}", ProxyMeth.rand.Next(0, int.MinValue)), MethodSig.CreateStatic(original.MethodSig.RetType, list.ToArray()), implFlags, flags)
+				MethodDef methodDef = new MethodDefUser(string.Format("ProxyMeth{0}", ProxyMeth.rand.Next(0, int.MinValue)), MethodSig.CreateStatic(original.MethodSig.RetType, list.ToArray()), MethodImplAttributes.IL, MethodAttributes.FamANDAssem | MethodAttributes.Family | MethodAttributes.Static | MethodAttributes.HideBySig)
 				{
 					Body = new CilBody()
 				};
@@ -70,26 +68,28 @@ namespace Rose.Protections
 				methodDef.Body.Instructions.Add(instruction);
 				Instruction instruction2 = new Instruction(OpCodes.Br_S);
 				methodDef.Body.Instructions.Add(instruction2);
-				int num2;
-				do
+				for (;;)
 				{
 					int num;
-					do
+					methodDef.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg, methodDef.Parameters[num]));
+					if (num == 0)
 					{
-						methodDef.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg, methodDef.Parameters[num]));
-						if (num == 0)
-						{
-							list2.Add(Instruction.Create(OpCodes.Ldarg, methodDef.Parameters[num]));
-						}
-						num++;
+						list2.Add(Instruction.Create(OpCodes.Ldarg, methodDef.Parameters[num]));
 					}
-					while (num <= original.MethodSig.Params.Count - 1);
-					Instruction item = Instruction.Create(OpCodes.Ldc_I4, num2);
-					methodDef.Body.Instructions.Add(item);
-					methodDef.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
-					num2++;
+					num++;
+					if (num > original.MethodSig.Params.Count - 1)
+					{
+						int num2;
+						Instruction item = Instruction.Create(OpCodes.Ldc_I4, num2);
+						methodDef.Body.Instructions.Add(item);
+						methodDef.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+						num2++;
+						if (num2 >= 5)
+						{
+							break;
+						}
+					}
 				}
-				while (num2 < 5);
 				Instruction instruction3 = Instruction.Create(OpCodes.Ldnull);
 				methodDef.Body.Instructions.Add(instruction3);
 				methodDef.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
@@ -104,7 +104,7 @@ namespace Rose.Protections
 			return result;
 		}
 
-		// Token: 0x0600010D RID: 269 RVA: 0x0000FB2C File Offset: 0x0000DD2C
+		// Token: 0x0600010D RID: 269 RVA: 0x0000B34C File Offset: 0x0000954C
 		public static void Execute(ModuleDef module)
 		{
 			ProxyMeth.ScanMemberRef(module);

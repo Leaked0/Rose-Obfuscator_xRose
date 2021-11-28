@@ -18,7 +18,7 @@ namespace Rose.Protections
 		[DllImport("kernel32.dll", CharSet = CharSet.Auto)]
 		private static extern IntPtr GetModuleHandle(string lpModuleName);
 
-		// Token: 0x06000038 RID: 56 RVA: 0x000065C4 File Offset: 0x000047C4
+		// Token: 0x06000038 RID: 56 RVA: 0x00004AF4 File Offset: 0x00002CF4
 		public static void OIURC()
 		{
 			IntPtr moduleHandle = HeaderErase.GetModuleHandle(null);

@@ -8,40 +8,46 @@ namespace Rose.Protections
 	// Token: 0x02000062 RID: 98
 	internal class Calli
 	{
-		// Token: 0x06000138 RID: 312 RVA: 0x00012ACC File Offset: 0x00010CCC
+		// Token: 0x06000138 RID: 312 RVA: 0x0000DA90 File Offset: 0x0000BC90
 		public static void Execute(ModuleDef module)
 		{
 			MethodDef methodDef;
-			if (methodDef.IsConstructor)
+			int num;
+			if (!methodDef.IsConstructor)
 			{
-				goto IL_409;
+				num = 0;
+				if (!methodDef.FullName.Contains(".My"))
+				{
+					goto IL_46;
+				}
 			}
-			int num = 0;
-			if (methodDef.FullName.Contains(".My"))
-			{
-				goto IL_409;
-			}
-			IL_7F:
+			IL_29:
+			num++;
 			MethodDef[] array;
+			if (num >= array.Length)
+			{
+				goto IL_2D2;
+			}
+			IL_46:
 			methodDef = array[num];
 			if (methodDef.FullName.Contains("My."))
 			{
-				goto IL_409;
+				goto IL_29;
 			}
 			TypeDef typeDef;
 			array = typeDef.Methods.ToArray<MethodDef>();
 			if (!methodDef.HasBody)
 			{
-				goto IL_409;
+				goto IL_29;
 			}
 			TypeDef[] array2 = module.Types.ToArray<TypeDef>();
 			int num2 = 0;
 			int num3 = 0;
 			if (!methodDef.Body.HasInstructions || methodDef.DeclaringType.IsGlobalModuleType)
 			{
-				goto IL_409;
+				goto IL_29;
 			}
-			IL_19B:
+			IL_CF:
 			typeDef = array2[num3];
 			if (!methodDef.FullName.Contains("Costura"))
 			{
@@ -49,36 +55,43 @@ namespace Rose.Protections
 				{
 					try
 					{
-						if (!methodDef.Body.Instructions[num2].ToString().Contains("ISupportInitialize") && (methodDef.Body.Instructions[num2].OpCode == OpCodes.Call || methodDef.Body.Instructions[num2].OpCode == OpCodes.Callvirt || methodDef.Body.Instructions[num2].OpCode == OpCodes.Ldloc_S))
+						if (!methodDef.Body.Instructions[num2].ToString().Contains("ISupportInitialize"))
 						{
-							if (!methodDef.Body.Instructions[num2].ToString().Contains("Object") && (methodDef.Body.Instructions[num2].OpCode == OpCodes.Call || methodDef.Body.Instructions[num2].OpCode == OpCodes.Callvirt || methodDef.Body.Instructions[num2].OpCode == OpCodes.Ldloc_S))
+							if (methodDef.Body.Instructions[num2].OpCode == OpCodes.Call || methodDef.Body.Instructions[num2].OpCode == OpCodes.Callvirt || methodDef.Body.Instructions[num2].OpCode == OpCodes.Ldloc_S)
 							{
-								try
+								if (!methodDef.Body.Instructions[num2].ToString().Contains("Object"))
 								{
-									MemberRef memberRef = (MemberRef)methodDef.Body.Instructions[num2].Operand;
-									methodDef.Body.Instructions[num2].OpCode = OpCodes.Calli;
-									methodDef.Body.Instructions[num2].Operand = memberRef.MethodSig;
-									methodDef.Body.Instructions.Insert(num2, Instruction.Create(OpCodes.Ldftn, memberRef));
-								}
-								catch (Exception)
-								{
+									if (methodDef.Body.Instructions[num2].OpCode == OpCodes.Call || methodDef.Body.Instructions[num2].OpCode == OpCodes.Callvirt || methodDef.Body.Instructions[num2].OpCode == OpCodes.Ldloc_S)
+									{
+										try
+										{
+											MemberRef memberRef = (MemberRef)methodDef.Body.Instructions[num2].Operand;
+											methodDef.Body.Instructions[num2].OpCode = OpCodes.Calli;
+											methodDef.Body.Instructions[num2].Operand = memberRef.MethodSig;
+											methodDef.Body.Instructions.Insert(num2, Instruction.Create(OpCodes.Ldftn, memberRef));
+										}
+										catch (Exception)
+										{
+										}
+									}
 								}
 							}
 						}
+						goto IL_35E;
 					}
 					catch (Exception)
 					{
+						goto IL_35E;
 					}
+					goto IL_2D2;
+					IL_35E:
 					num2++;
 				}
 				while (num2 < methodDef.Body.Instructions.Count - 1);
+				goto IL_29;
 			}
-			IL_409:
-			num++;
-			if (num < array.Length)
-			{
-				goto IL_7F;
-			}
+			goto IL_29;
+			IL_2D2:
 			foreach (MethodDef methodDef2 in module.GlobalType.Methods)
 			{
 				if (!(methodDef2.Name != ".ctor"))
@@ -92,7 +105,7 @@ namespace Rose.Protections
 			{
 				return;
 			}
-			goto IL_19B;
+			goto IL_CF;
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace Rose.Protections
 	// Token: 0x0200000A RID: 10
 	public class AntiDebug2
 	{
-		// Token: 0x0600001B RID: 27 RVA: 0x00004000 File Offset: 0x00002200
+		// Token: 0x0600001B RID: 27 RVA: 0x000035CC File Offset: 0x000017CC
 		public static void Execute(ModuleDef module)
 		{
 			AntiDebug2.debuggerMethod.Body.Instructions.Insert(0, Instruction.Create(OpCodes.Call, AntiDebug2.debuggerMethod));
@@ -31,11 +31,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_108;
 					}
 				}
 				module.GlobalType.Remove(methodDef);
-				Block_4:;
+				IL_108:;
 			}
 		}
 

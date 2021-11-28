@@ -9,25 +9,25 @@ namespace Rose.Protections
 	// Token: 0x02000036 RID: 54
 	internal class ControlFlow
 	{
-		// Token: 0x060000A2 RID: 162 RVA: 0x00008CAC File Offset: 0x00006EAC
+		// Token: 0x060000A2 RID: 162 RVA: 0x00005B4C File Offset: 0x00003D4C
 		public static void Execute(ModuleDefMD Module)
 		{
 			MethodDef methodDef;
 			if (methodDef.HasBody)
 			{
-				goto IL_24;
+				goto IL_0E;
 			}
 			int num;
 			TypeDef typeDef;
 			do
 			{
-				IL_2E9:
+				IL_1C7:
 				num++;
 				ControlFlow.ExecuteMethod4(methodDef, Module);
 				num = 0;
 				if (typeDef == Module.GlobalType)
 				{
-					goto IL_24;
+					goto IL_0E;
 				}
 			}
 			while (methodDef.Name.StartsWith("get_"));
@@ -36,10 +36,10 @@ namespace Rose.Protections
 			int num2;
 			if (num2 >= Module.Types.Count)
 			{
-				goto IL_3E7;
+				goto IL_174;
 			}
-			goto IL_2AA;
-			IL_24:
+			goto IL_14F;
+			IL_0E:
 			num2++;
 			ControlFlow.ExecuteMethod(methodDef, Module);
 			ControlFlow.ExecuteMethod6(methodDef, Module);
@@ -48,7 +48,7 @@ namespace Rose.Protections
 				methodDef = typeDef.Methods[num];
 				if (methodDef.Name.StartsWith("set_"))
 				{
-					goto IL_2E9;
+					goto IL_1C7;
 				}
 				if (xd.cflowint == 1)
 				{
@@ -56,12 +56,12 @@ namespace Rose.Protections
 				}
 				if (xd.cflowint != 2)
 				{
-					goto IL_223;
+					goto IL_114;
 				}
 				ControlFlow.ExecuteMethod2(methodDef, Module);
 				if (methodDef.IsConstructor)
 				{
-					goto IL_2E9;
+					goto IL_1C7;
 				}
 				ControlFlow.ExecuteMethod3(methodDef, Module);
 				ControlFlow.ExecuteMethod3(methodDef, Module);
@@ -71,7 +71,7 @@ namespace Rose.Protections
 			while (num < typeDef.Methods.Count);
 			ControlFlow.ExecuteMethod2(methodDef, Module);
 			ControlFlow.ExecuteMethod(methodDef, Module);
-			IL_223:
+			IL_114:
 			if (xd.cflowint == 3)
 			{
 				ControlFlow.ExecuteMethod(methodDef, Module);
@@ -80,21 +80,21 @@ namespace Rose.Protections
 			}
 			if (xd.cflowint != 4)
 			{
-				goto IL_3E7;
+				goto IL_174;
 			}
-			IL_2AA:
+			IL_14F:
 			typeDef = Module.Types[num2];
 			ControlFlow.ExecuteMethod2(methodDef, Module);
-			goto IL_2E9;
-			IL_3E7:
+			goto IL_1C7;
+			IL_174:
 			if (xd.cflowint == 5)
 			{
 				return;
 			}
-			goto IL_2E9;
+			goto IL_1C7;
 		}
 
-		// Token: 0x060000A3 RID: 163 RVA: 0x000090D0 File Offset: 0x000072D0
+		// Token: 0x060000A3 RID: 163 RVA: 0x00005D58 File Offset: 0x00003F58
 		public static void ExecuteMethod4(MethodDef method, ModuleDefMD Module)
 		{
 			method.Body.SimplifyMacros(method.Parameters);
@@ -178,7 +178,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000A4 RID: 164 RVA: 0x000097A4 File Offset: 0x000079A4
+		// Token: 0x060000A4 RID: 164 RVA: 0x0000634C File Offset: 0x0000454C
 		public static void ExecuteMethod6(MethodDef method, ModuleDefMD Module)
 		{
 			List<Block> blocks = ControlFlow.Randomize(blocks);
@@ -267,7 +267,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000A5 RID: 165 RVA: 0x00009E78 File Offset: 0x00008078
+		// Token: 0x060000A5 RID: 165 RVA: 0x00006940 File Offset: 0x00004B40
 		public static void ExecuteMethod3(MethodDef method, ModuleDefMD Module)
 		{
 			List<Block> blocks = Blocks.Block(method);
@@ -357,7 +357,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000A6 RID: 166 RVA: 0x0000A54C File Offset: 0x0000874C
+		// Token: 0x060000A6 RID: 166 RVA: 0x00006F34 File Offset: 0x00005134
 		public static void ExecuteMethod2(MethodDef method, ModuleDefMD Module)
 		{
 			Instruction instruction = Instruction.Create(OpCodes.Nop);
@@ -446,7 +446,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000A7 RID: 167 RVA: 0x0000AC20 File Offset: 0x00008E20
+		// Token: 0x060000A7 RID: 167 RVA: 0x00007528 File Offset: 0x00005728
 		public static void ExecuteMethod(MethodDef method, ModuleDefMD Module)
 		{
 			Instruction instruction2;
@@ -536,7 +536,7 @@ namespace Rose.Protections
 			}
 		}
 
-		// Token: 0x060000A8 RID: 168 RVA: 0x0000B2F4 File Offset: 0x000094F4
+		// Token: 0x060000A8 RID: 168 RVA: 0x00007B1C File Offset: 0x00005D1C
 		public static List<Block> Randomize(List<Block> input)
 		{
 			List<Block> list = new List<Block>();
@@ -552,7 +552,7 @@ namespace Rose.Protections
 			return list;
 		}
 
-		// Token: 0x060000A9 RID: 169 RVA: 0x0000B3B8 File Offset: 0x000095B8
+		// Token: 0x060000A9 RID: 169 RVA: 0x00007BA4 File Offset: 0x00005DA4
 		public static List<Instruction> Calc(int value)
 		{
 			List<Instruction> list;
@@ -561,7 +561,7 @@ namespace Rose.Protections
 			return list;
 		}
 
-		// Token: 0x060000AA RID: 170 RVA: 0x0000B420 File Offset: 0x00009620
+		// Token: 0x060000AA RID: 170 RVA: 0x00007BD8 File Offset: 0x00005DD8
 		public static void AddJump(IList<Instruction> instrs, Instruction target)
 		{
 			instrs.Add(Instruction.Create(OpCodes.Br, target));

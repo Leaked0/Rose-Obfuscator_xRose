@@ -7,7 +7,7 @@ namespace Rose.Protections
 	// Token: 0x0200005E RID: 94
 	public class PropertiesRenaming : IRenaming
 	{
-		// Token: 0x06000126 RID: 294 RVA: 0x00011710 File Offset: 0x0000F910
+		// Token: 0x06000126 RID: 294 RVA: 0x0000CBDC File Offset: 0x0000ADDC
 		public ModuleDefMD Rename(ModuleDefMD module)
 		{
 			using (IEnumerator<TypeDef> enumerator = module.GetTypes().GetEnumerator())
@@ -17,26 +17,33 @@ namespace Rose.Protections
 					TypeDef typeDef = enumerator.Current;
 					if (!typeDef.IsGlobalModuleType)
 					{
-						foreach (PropertyDef propertyDef in typeDef.Properties)
+						using (IEnumerator<PropertyDef> enumerator2 = typeDef.Properties.GetEnumerator())
 						{
-							if (xd.renamertype == "Ascii")
+							while (enumerator2.MoveNext())
 							{
-								propertyDef.Name = RUtils.GenerateRandomString2(xd.thelength);
+								PropertyDef propertyDef = enumerator2.Current;
+								if (xd.renamertype == "Ascii")
+								{
+									propertyDef.Name = RUtils.GenerateRandomString2(xd.thelength);
+								}
+								if (xd.renamertype == "Numbers")
+								{
+									propertyDef.Name = RUtils.RandomNum(xd.thelength);
+								}
+								if (xd.renamertype == "Symbols")
+								{
+									propertyDef.Name = RUtils.RandomSymbols(xd.thelength);
+								}
+								if (xd.renamertype == "Chinese")
+								{
+									propertyDef.Name = RUtils.RandomChinese(xd.thelength);
+								}
 							}
-							if (xd.renamertype == "Numbers")
-							{
-								propertyDef.Name = RUtils.RandomNum(xd.thelength);
-							}
-							if (xd.renamertype == "Symbols")
-							{
-								propertyDef.Name = RUtils.RandomSymbols(xd.thelength);
-							}
-							if (xd.renamertype == "Chinese")
-							{
-								propertyDef.Name = RUtils.RandomChinese(xd.thelength);
-							}
+							goto IL_20;
 						}
+						continue;
 					}
+					IL_20:;
 				}
 				while (enumerator.MoveNext());
 			}

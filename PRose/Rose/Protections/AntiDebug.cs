@@ -10,7 +10,7 @@ namespace Rose.Protections
 	// Token: 0x02000007 RID: 7
 	public static class AntiDebug
 	{
-		// Token: 0x06000015 RID: 21 RVA: 0x000039F4 File Offset: 0x00001BF4
+		// Token: 0x06000015 RID: 21 RVA: 0x00003340 File Offset: 0x00001540
 		public static void Execute(ModuleDef module)
 		{
 			ModuleDefMD moduleDefMD = ModuleDefMD.Load(typeof(AntiDebugSafe).Module);
@@ -35,11 +35,11 @@ namespace Rose.Protections
 					}
 					if (!enumerator.MoveNext())
 					{
-						goto Block_4;
+						goto IL_117;
 					}
 				}
 				module.GlobalType.Remove(methodDef2);
-				Block_4:;
+				IL_117:;
 			}
 		}
 	}
